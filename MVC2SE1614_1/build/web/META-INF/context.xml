@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context antiJARLocking="true" path="/MVC2SE1614_1">
+  <Resource auth="Container" driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" name="SE1614DS" password="1" type="javax.sql.DataSource" url="jdbc:sqlserver://localhost:1433;databaseName=prj301_db;instanceName=NGANHA" username="sa"/>
+</Context>
