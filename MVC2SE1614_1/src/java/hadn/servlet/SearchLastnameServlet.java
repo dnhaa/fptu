@@ -46,10 +46,12 @@ public class SearchLastnameServlet extends HttpServlet {
         
         response.setContentType("text/html;charset=UTF-8");
         String errors = request.getParameter("createError");
-        String username = request.getParameter("usernameError");
+        String username = request.getParameter("usernameCreateError");
         String searchValue = request.getParameter("txtSearchValue");
+        String selfDeleteError = request.getParameter("selfDeleteError");
+        String adminDeleteError = request.getParameter("adminDeleteError");
 //        String url = SEARCH_PAGE;
-        String url = siteMaps.getProperty(MyApplicationConstants.SearchLastnameFeature.SEARCH_PAGE_HTML);
+        String url = siteMaps.getProperty(MyApplicationConstants.SearchLastnameFeature.SEARCH_PAGE);
         try {
             if (searchValue.trim().length() > 0) {
                 //call DAO
@@ -61,6 +63,8 @@ public class SearchLastnameServlet extends HttpServlet {
                 request.setAttribute("CREATEERRORS", errors);
                 request.setAttribute("USERNAME_ERROR", username);
                 request.setAttribute("SEARCHRESULT", result);
+                request.setAttribute("SELFDELETEERROR", selfDeleteError);
+                request.setAttribute("ADMINDELETEERROR", adminDeleteError);
                 url = siteMaps.getProperty(MyApplicationConstants.SearchLastnameFeature.SEARCH_PAGE);
                 
             } //end search Value had existed value

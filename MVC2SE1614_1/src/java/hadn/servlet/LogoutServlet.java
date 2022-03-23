@@ -60,7 +60,10 @@ public class LogoutServlet extends HttpServlet {
                     Cookie cookie = new Cookie(username, "");
                     cookie.setMaxAge(0); //0s
                     response.addCookie(cookie);
+//                    session.setAttribute("TOKEN", null);
+                    
                     session.invalidate();
+                    
 
                 }
             } finally {

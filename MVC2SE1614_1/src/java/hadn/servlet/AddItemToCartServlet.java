@@ -44,46 +44,28 @@ public class AddItemToCartServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = siteMaps.getProperty(MyApplicationConstants.AddItemToCartFeature.SHOPPING_PAGE);
         ProductSelectError pse = new ProductSelectError();
+        String txtBookName = request.getParameter("txtBookName");
         try {
-//            HttpSession session = request.getSession();
-//            CartObject cart = (CartObject) session.getAttribute("CART");
-//            if (cart == null) {
-//                cart = new CartObject();
-//            }
-//            String item = request.getParameter("txtBook");
-//            String status = request.getParameter("chkStatus");
-//            //System.out.println(status);
-//            if (item != null) {
-//                if (status.equals("true")) {
-//                    cart.addItemToCart(item);
-//                }
-//                else { 
-//                    pse.setStatusError("This book is not for sale");
-//                    request.setAttribute("ERROR_ADD_ITEM", pse);
-//                }
-//            } 
-//            session.setAttribute("CART", cart);
-
             HttpSession session = request.getSession();
             CartObject cart = (CartObject) session.getAttribute("CART");
             if (cart == null) {
                 cart = new CartObject();
             }
             String item = request.getParameter("txtBook");
+            String status = request.getParameter("chkStatus");
+            //System.out.println(status);
             if (item != null) {
-                String status = request.getParameter("chkStatus");
-                if (status.equals("true")) {
-                    cart.addItemToCart(item);
-                }
-                else {
-                    pse.setStatusError("The item is not for sale.");
-                    request.setAttribute("ERROR_ADD_ITEM", pse);
-                }
-            }
+                
+                cart.addItemToCart(item);
+                url = "searchBookController?"
+                    + "txtBookName=" + txtBookName;
+                
+            } 
             session.setAttribute("CART", cart);
+            
+
         } finally {
-            RequestDispatcher rd = request.getRequestDispatcher(url);
-            rd.forward(request, response);
+            response.sendRedirect(url);
         }
     }
 

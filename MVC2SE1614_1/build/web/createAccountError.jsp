@@ -39,7 +39,7 @@
                     ${errors.confirmNotMatched}
                 </font><br/>
             </c:if>
-                Full name <input type="text" name="txtFullname" value="${param.txtFullname}" />(e.g. 6 - 50 chars)<br/>
+                Full name <input type="text" name="txtFullname" value="${param.txtFullname}" />(e.g. 2 - 50 chars)<br/>
             <c:if test="${not empty errors.fullnameLengthError}">
                 <font color="red">
                     ${errors.fullnameLengthError}
@@ -47,5 +47,6 @@
             </c:if>
             <input type="submit" value="Create New Account" name="btAction" />
         </form>
+            <a href="loginPage">Click here to login</a><br/>
     </body>
 </html>

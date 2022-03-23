@@ -63,6 +63,7 @@
                                         </td>
                                         <td>
                                             <input type="hidden" name="chkStatus" value="${dto.status}" />
+                                            <input type="hidden" name="txtBookName" value="${param.txtBookName}" />
                                             <input type="submit" value="Add More Books to Your Cart" name="btAction" />
                                         </td>
                                     </tr>

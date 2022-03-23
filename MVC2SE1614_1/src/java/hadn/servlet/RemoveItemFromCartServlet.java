@@ -42,39 +42,22 @@ public class RemoveItemFromCartServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = siteMaps.getProperty(MyApplicationConstants.RemoveItemFromCartFeature.SHOW_CART_PAGE);
         try {
-//            HttpSession session = request.getSession(false);
-//            if (session != null) {
-//                CartObject cart = (CartObject)session.getAttribute("CART");
-//                if (cart != null) {
-//                    Map<String, Integer> items = cart.getItems();
-//                    if (items != null) {
-//                        String[] selectedItems = request.getParameterValues("chkItem");
-//                        if (selectedItems != null) {
-//                            for (String item : selectedItems) {
-//                                cart.removeItemFromCart(item);
-//                            }
-//                            session.setAttribute("CART", cart);
-//                        }
-//                    }
-//                }
-//            }
             HttpSession session = request.getSession(false);
             if (session != null) {
-                CartObject cart = (CartObject) session.getAttribute("CART");
+                CartObject cart = (CartObject)session.getAttribute("CART");
                 if (cart != null) {
                     Map<String, Integer> items = cart.getItems();
                     if (items != null) {
-                        String[] itemsToDeletes = request.getParameterValues("chkItem");
-                        if (itemsToDeletes != null) {
-                            for (String itemsToDelete : itemsToDeletes) {
-                                cart.removeItemFromCart(itemsToDelete);
-                                session.setAttribute("CART", cart);
+                        String[] selectedItems = request.getParameterValues("chkItem");
+                        if (selectedItems != null) {
+                            for (String item : selectedItems) {
+                                cart.removeItemFromCart(item);
                             }
+                            session.setAttribute("CART", cart);
                         }
                     }
                 }
             }
-            
         } finally {
 //            String urlRewriting = "showCartPage"
 //                    + "?btAction=View Your Cart";

@@ -62,10 +62,7 @@ public class LoginServlet extends HttpServlet {
 //                    url = INVALID_PAGE;
 //                    return;
 //                }
-            
-            //practice
-            
-//            1. Call Model
+            //1. Call Model
             RegistrationDAO dao = new RegistrationDAO();
             //boolean result = dao.checkLogin(username, password);
             dao.checkLogin(username, password);
@@ -75,35 +72,18 @@ public class LoginServlet extends HttpServlet {
             if (result != null) {
 //                url = SEARCH_PAGE;
                 url = siteMaps.getProperty(MyApplicationConstants.LoginFeature.SEARCH_PAGE);
-                String lastname = result.get(0).getFullName();
+                RegistrationDTO user = result.get(0);
                 Cookie cookie = new Cookie(username, password);
                 cookie.setMaxAge(60); //60s
                 response.addCookie(cookie);
                 HttpSession session = request.getSession();
-                session.setAttribute("USERNAME", username);
-                session.setAttribute("LASTNAME", lastname);
+//                session.setAttribute("USERNAME", username);
+                session.setAttribute("USER", user);
+                session.setAttribute("TOKEN", "ok");
+                
                 
                 
             }
-            
-            //practice
-            
-            //start
-            
-//            RegistrationDAO dao = new RegistrationDAO();
-//            dao.checkLogin(username, password);
-//            List<RegistrationDTO> result = dao.getAccounts();
-//            
-//            if (result != null) {
-//                url = siteMaps.getProperty(MyApplicationConstants.LoginFeature.SEARCH_PAGE);
-//                HttpSession session = request.getSession();
-//                session.setAttribute("LASTNAME", result.get(0).getFullName());
-//                Cookie cookies = new Cookie(username, password);
-//                cookies.setMaxAge(60);
-//                response.addCookie(cookies);
-//            }
-            
-            //end
 
         } //end oif username and password are matched!!!
         //end if user clicked login button

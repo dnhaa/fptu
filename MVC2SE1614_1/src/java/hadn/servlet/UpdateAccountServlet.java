@@ -59,9 +59,6 @@ public class UpdateAccountServlet extends HttpServlet {
         RegistrationCreateError errors = new RegistrationCreateError();
         boolean foundErr = false;
         try {
-            
-            //practice
-            
             //1. Check Constrains
             if (password.trim().length() < 6
                     || password.trim().length() > 30) {
@@ -77,7 +74,7 @@ public class UpdateAccountServlet extends HttpServlet {
 //                            + "?btAction=Search"
                         + "&txtSearchValue=" + searchValue
                         + "&createError=" + errors.getPasswordLengthError()
-                        + "&usernameError=" + username
+                        + "&usernameCreateError=" + username
                                 ;
 
             } else {
@@ -89,25 +86,6 @@ public class UpdateAccountServlet extends HttpServlet {
                             + "&txtSearchValue=" + searchValue;
                 }
             }
-            
-            //practice
-//                if (password.trim().length() < 6 || password.trim().length() > 30) {
-//                    foundErr = true;
-//                    errors.setPasswordLengthError("Password must be from 6 to 30 characters.");
-//                } if (foundErr) {
-//                    url = "searchLastnameController?"
-//                            + "createError=" + errors.getPasswordLengthError()
-//                            + "&usernameError=" + username
-//                            + "&txtSearchValue=" + searchValue;
-//                } else {
-//                    RegistrationDAO dao = new RegistrationDAO();
-//                    boolean result = dao.updateAccount(username, password, admin);
-//                    if (result)
-//                    url = "searchLastnameController?"
-//                            + "txtSearchValue=" + searchValue;
-//                }
-            //end
- 
         } catch (NamingException ex) {
             log("UpdateAccountServlet _ Naming" + ex.getMessage());
         } catch (SQLException ex) {
